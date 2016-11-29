@@ -1,0 +1,77 @@
+*{
+    margin:0;
+    padding:0;
+}
+.wrap{
+    width: 100%;
+    background: url("../Images/body_bg.jpg") center -50px;
+    background-size:cover;
+}
+.content{
+	  width:1250px;
+    margin:0 auto;
+    overflow: hidden;
+    padding:65px 0 30px 0;
+}
+.demo1{
+    width: 162px;
+    height: 114px;
+    float: left;
+    margin-right:55px;
+    background: rgba(255,255,255,.1);
+    padding:40px 0 50px 0;
+    position: relative;
+}
+.demo1:last-child{
+	margin-right:0;
+}
+.demo1>*{
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    transition: all .3s ease 0s;
+}
+.demo1 h1{
+    top:30px;
+}
+.demo1 h4{
+    top:75px;
+}
+.demo1>div{
+    top:120px;
+}
+.demo1:hover  h1{
+    top:90px;
+}
+.demo1:hover  h4{
+    top:135px;
+}
+.demo1:hover div{
+    top:30px;
+}
+.content1{
+  width:1250px;
+  margin:0 auto;
+  margin-top:30px;
+  overflow: hidden;
+  padding-top:65px;
+  background: rgba(255,255,255,.1);
+}
+.imgTu{
+  margin-left:4%;
+  background: #fff !important;
+  float: left;
+  height: 370px;
+}
+.img1{
+  width: 400px;
+  margin-bottom:4%;
+}
+.img2{
+  width: 530px;
+  margin-bottom:4%;
+}
+.img3{
+  width: 580px;
+}

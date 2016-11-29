@@ -1,0 +1,79 @@
+*{
+    margin:0;
+    padding:0;
+}
+.wrap{
+    width: 100%;
+    height: 100vh;
+    background: #0E1A53;
+    margin:0 auto;
+    overflow: hidden;
+}
+.form{
+    width: 562px;
+    text-align: center;
+    margin-top:-148px;
+    margin-left:-281px;
+    overflow: hidden;
+    top:50%;
+    left:50%;
+    position: absolute;
+    z-index: 999;
+}
+.form>*{
+    display: block;
+    margin:0 auto;
+}
+.section_wrap{
+    color: #fff;
+    height: 36px;
+    width: 560px;
+    margin:0 auto;
+    margin-top:30px;
+}
+.section1{
+    width: 453px;
+    height: 38px;
+    margin:0 auto;
+    margin-bottom:25px;
+}
+.icon_wrap{
+    float: left;
+    display:block;
+    width: 28px;
+    height: 29px;
+    border:1px solid blue;
+    padding:7px 2px 0 2px;
+}
+.section1 input{
+    float: left;
+    width: 384px;
+    height: 36px;
+    background: none;
+    outline: none;
+    border:1px solid blue;
+    border-left:none;
+    padding:0 15px;
+    color: #ccc;
+}
+.section3 input{
+    width: 233px;
+}
+.btn{
+    width: 100%;
+    height: 36px;
+}
+.btn button{
+    width: 115px;
+    height: 36px;
+    border:none;
+    outline: none;
+    color: white;
+  cursor: pointer;
+}
+.btn .xn_btn_primary{
+    float: left;
+}
+.btn .xn_btn_success{
+    float: right;
+}

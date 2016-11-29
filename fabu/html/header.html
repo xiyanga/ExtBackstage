@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>翡翠学院</title>
+    <link href="../css/ext-all.css" rel="stylesheet">
+    <link href="../css/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/fc-all.css">
+    <link rel="stylesheet" href="../css/ClearButton.css">
+    <link rel="stylesheet" href="../css/header.css"/>
+  <script src="../js/jquery-1.8.3.min.js" type="text/javascript"></script>
+  <script src="../js/basicParameter.js" type="text/javascript"></script>
+  <script src="../js/ext-all.js" type="text/javascript"></script>
+  <script src="../js/basicExtModule.js" type="text/javascript"></script>
+  <script src="../js/PagingToolBar.js" type="text/javascript"></script>
+  <script src="../js/tools.js" type="text/javascript"></script>
+  <script src="../js/ClearButton.js" type="text/javascript"></script>
+  <script src="../js/header.js"></script>
+</head>
+<body>
+    <div class="wrap">
+        <div class="top">
+            <div class="top1">
+            <img src="../images/back_logo.png" style="vertical-align: top"/>
+            <div class="top_right">
+                <span class="icon-wrap"><i class="icon-globe"></i>卓新思创</span>
+                <span class="icon-wrap"><i class="icon-comment"></i>在线客服</span>
+                <span class="icon-wrap"><i class="icon-book"></i>常见问题</span>
+                <span class="icon-wrap" onclick="changePwd()"><i class="icon-lock"></i>安全中心</span>
+                <span class="icon-wrap" onclick="returnPage()"><i class="icon-signout"></i>退出</span>
+                <span style="margin-right:0;"><span style="margin-right:0;"><i id="userName">小墨墨</i>&nbsp;</span> <img style="vertical-align: top;width:50px;height:50px;margin-top:0px;" src="../images/touxiang.jpg" alt=""/></span>
+            </div>
+            </div>
+        </div>
+        <div class="header">
+            <div class="nav">
+                    <div class="nav11 nav1">
+                        <div class="icon_wrap">
+                          <div class="left"></div>
+                          <div class="right"></div>
+                          <i class="icon-user"></i><span>用户管理</span>
+                        </div>
+                        <div class="select">
+                            <div class="se select1" id="select1" iLink="../html/extdemo.html">
+                                <span class="icon-wrap"><i class="icon-user"></i>系统人员</span>
+                            </div>
+                            <div class="se select2" id="select2" iLink="../html/extdemo2.html">
+                                <span class="icon-wrap"><i class="icon-group"></i>学员管理</span>
+                            </div>
+                            <div class="se select3" id="select3">
+                                <span class="icon-wrap"><i class="icon-legal"></i>权限管理</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav2 nav11">
+                        <div class="icon_wrap">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <i class="icon-book"></i><span>课程管理</span>
+                        </div>
+                        <div class="select">
+                            <div class="se select1" id="select4" id="" iLink="../html/courseList.html">
+                                <span class="icon-wrap"><i class="icon-th"></i>课程列表</span>
+                            </div>
+                            <div class="se select2" id="select5" iLink="../html/courseAdd.html">
+                                <span class="icon-wrap"><i class="icon-plus"></i>添加课程</span>
+                            </div>
+                            <div class="se select3" id="select6" iLink="../html/videoList.html">
+                                <span class="icon-wrap"><i class="icon-facetime-video"></i>视频管理</span>
+                            </div>
+                            <div class="se select3">
+                                <span class="icon-wrap"><i class="icon-pencil"></i>课程评价</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav3 nav11">
+                        <div class="icon_wrap">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <i class="icon-tasks"></i><span>统计报表</span>
+                        </div>
+                        <div class="select">
+                            <div class="se select1">
+                                <span class="icon-wrap"><i class="icon-book"></i>课程统计</span>
+                            </div>
+                            <div class="se select2">
+                                <span class="icon-wrap"><i class="icon-group"></i>学员统计</span>
+                            </div>
+                            <div class="se select3">
+                                <span class="icon-wrap"><i class="icon-globe"></i>访问统计</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav4 nav11">
+                        <div class="icon_wrap">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <i class="icon-folder-close"></i><span>其它管理</span>
+                        </div>
+                        <div class="select">
+                            <div class="se select1">
+                                <span class="icon-wrap"><i class="icon-envelope-alt"></i>反馈意见</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav5 nav11">
+                        <div class="icon_wrap">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <i class="icon-bookmark"></i><span>数据字典</span>
+                        </div>
+                        <div class="select">
+                            <div class="se select1">
+                                <span class="icon-wrap"><i class="icon-leaf"></i>常用选项</span>
+                            </div>
+                            <div class="se select2">
+                                <span class="icon-wrap"><i class="icon-map-marker"></i>地区</span>
+                            </div>
+                            <div class="se select3">
+                                <span class="icon-wrap"><i class="icon-flag"></i>专业</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nav6 nav11">
+                        <div class="icon_wrap">
+                            <div class="left"></div>
+                            <div class="right"></div>
+                            <i class="icon-cog"></i><span>系统维护</span>
+                        </div>
+                        <div class="select">
+                            <div class="se select1">
+                                <span class="icon-wrap"><i class="icon-cog"></i>系统设置</span>
+                            </div>
+                            <div class="se select2">
+                                <span class="icon-wrap"><i class="icon-calendar"></i>操作日志</span>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+<div id="backContent"></div>
+</body>
+</html>

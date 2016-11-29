@@ -1,0 +1,137 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+  overflow-y: hidden;
+}
+.wrap{
+    min-width:1240px;
+    width: 100%;
+    margin:0 auto;
+    font-family: "微软雅黑", verdana;
+    background: url("../Images/body_bg.jpg") no-repeat center 50px;
+}
+.top{
+    width:100%;
+    height: 50px;
+    background:#000;
+}
+.top1{
+    width:1240px;
+    margin:0 auto;
+}
+.top img{
+    float: left;
+    margin-top:3px;
+}
+.top_right{
+    float: right;
+    color:#ccc;
+    font-size: 13px;
+}
+.top_right span{
+    display: block;
+    float: left;
+    margin-right:33px;
+    line-height: 50px;
+    cursor: pointer;
+}
+.top_right span i{
+    margin-right:8px;
+}
+.header{
+    width: 100%;
+    height: 50px;
+    position: relative;
+}
+.nav{
+    width: 950px;
+    height: 50px;
+    margin:0 auto;
+}
+.nav .icon_wrap{
+    list-style: none;
+    color: white;
+    line-height:40px;
+    float: left;
+    margin-right:47px;
+    font-size: 14px;
+    height: 46px;
+    margin-top:4px;
+    position: relative;
+    padding:0 15px;
+    cursor: pointer;
+}
+.nav .icon_wrap i{
+    margin-right:10px;
+}
+.left,.right{
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    z-index: -1;
+}
+.left{
+    top:15px;
+    left:15px;
+    border-top:2px solid white;
+    border-left:2px solid white;
+}
+.right{
+    bottom:15px;
+    right:15px;
+    border-bottom:2px solid white;
+    border-right:2px solid white;
+}
+.le{
+    z-index: 1;
+    top:0;
+    left:0;
+    transition: all .3s ease 0s;
+}
+.ri{
+    z-index: 1;
+    bottom:0;
+    right:0;
+    transition: all .3s ease 0s;
+}
+.nav11{
+    width: 100%;
+}
+.select{
+    display: none;
+    width: 100%;
+    height: 140px;
+    position: absolute;
+    top:50px;
+    left:0px;
+    background: #fff;
+    z-index: 999;
+}
+.se{
+    cursor: pointer;
+    width:180px;
+    height: 41px;
+    float: left;
+    border:1px solid #ddd;
+    padding:0 35px;
+    line-height: 41px;
+    color: #8c8c8c;
+    font-size: 14px;
+    transition: all 1s ease 0s;
+}
+.se:hover{
+    color: white;
+    background: lightblue;
+}
+.select1{
+    margin:47px 0 0 110px;
+}
+.select2,.select3{
+    margin:47px 0 0 35px;
+}
+.se i{
+    margin-right:13px;
+    color: #334483;
+}

@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+  <script>
+//    var fun=function(){
+//      this.name="tom";
+//      return{
+//        name:"jack"
+//      }
+//    }
+//    var p=new fun();
+
+
+//var fun=function(){
+//  this.name="tom";
+//  return "jack"
+//}
+//var p=new fun()
+//    alert(p.name);
+
+
+//var  fun=function(){}
+//fun.prototype={
+//  info:{
+//    name:"tom",
+//    age:25,
+//  }
+//}
+//var a=new fun()
+//var b=new fun()
+//a.info.name="tom"
+//b.info.name="jack"
+//    alert(a.info.name);
+//    alert(b.info.name);
+
+
+//function fn(){
+//  console.log(a)
+//  var a=2;
+//  function a(){}
+//  console.log(a)
+//}
+//fn(1)
+
+//var a="111";
+//if(isNaN(a)){
+//  alert(1);
+//}else{
+//  alert(2);
+//}
+
+//with (function(x,undefined){}) length;
+
+//var arr=[{a:1},{}]
+//    arr.forEach(function(item,idx){
+//      //arr的
+//      item.b=idx;
+//    });
+//console.log(arr);
+  </script>
+</head>
+<body>
+<!--<canvas  id="a"></canvas>-->
+<!--<script>-->
+  <!--function clock(canvas_id){-->
+    <!--!function(canvas_id){-->
+      <!--"begin of api";-->
+      <!--var width = 1000;//绘制主要以width为参考来决定弹球半径-->
+      <!--var height = 200;//height只用来计算绘制数字的基线-->
+      <!--var margin_horiz = 150;//水平方向的时钟绘制区域与左右两个边界的保留距离-->
+      <!--var margin_vertic = 50;//暂时不用,只是保留下来-->
+      <!--var gapCalcByRad = 1.0;//数字位之间的间隙-->
+      <!--var median = height / 2;//基线高度-->
+      <!--var ball_radius = (width - 2 * margin_horiz) / (100 + 14.0 * gapCalcByRad);//弹球圆球的半径-->
+      <!--var fillRem = 0.9;//弹球,圆的绘制半径,实际上只填充圆的0.8个半径范围-->
+
+      <!--var lossFactor = 0.6;//速度的损益因子，每次碰撞后速度为原来的lossFactor倍,保持位正数，切不能大于1-->
+      <!--const deltaTime = 80;//刷新时间， 以毫秒计， 影响帧率-->
+
+      <!--var countdown_switch = true;//倒计时开关，设置为true表示使用倒计时功能,false时，只作为时钟显示时间-->
+      <!--var destTime = undefined;//用于倒计时的目标时间-->
+      <!--setDestTime(2016, 11, 2, 0, 7, 7);//1-12月，从1开始计数，屏蔽了Date对象的从0开始计数-->
+      <!--//目标时间跟现在的时间的 差值，不暴露，但和destTime放在一起，方便查找-->
+      <!--//当不适用倒计时功能时，设置为现在的时间，绘制钟表-->
+      <!--var diffTime = undefined;//看上面两行注释-->
+      <!--//偏好的颜色预置选项-->
+      <!--const colors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"];-->
+      <!--var digit_color = colors[5];//绘制数位的颜色-->
+      <!--//开启-->
+      <!--function start(){-->
+        <!--//定时刷新-->
+        <!--setInterval(function(){-->
+          <!--updateClock();-->
+          <!--updateMarbles();-->
+          <!--addMarbleArray();-->
+          <!--renderClock();-->
+          <!--renderMarbles();-->
+        <!--}, deltaTime);-->
+      <!--};-->
+      <!--"end of api";-->
+
+      <!--//以下数据不暴露-->
+      <!--const $2PI = 2 * Math.PI;-->
+      <!--var digit =-->
+        <!--[-->
+          <!--[-->
+            <!--[0,0,1,1,1,0,0],-->
+            <!--[0,1,1,0,1,1,0],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,1,1,0,1,1,0],-->
+            <!--[0,0,1,1,1,0,0]-->
+          <!--],//0-->
+          <!--[-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,1,1,1,1,0,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[1,1,1,1,1,1,1]-->
+          <!--],//1-->
+          <!--[-->
+            <!--[0,1,1,1,1,1,0],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,1,1,0,0,0],-->
+            <!--[0,1,1,0,0,0,0],-->
+            <!--[1,1,0,0,0,0,0],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,1,1,1,1,1]-->
+          <!--],//2-->
+          <!--[-->
+            <!--[1,1,1,1,1,1,1],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,1,1,1,0,0],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,1,1,1,1,1,0]-->
+          <!--],//3-->
+          <!--[-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,1,1,1,0],-->
+            <!--[0,0,1,1,1,1,0],-->
+            <!--[0,1,1,0,1,1,0],-->
+            <!--[1,1,0,0,1,1,0],-->
+            <!--[1,1,1,1,1,1,1],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,1,1,1,1]-->
+          <!--],//4-->
+          <!--[-->
+            <!--[1,1,1,1,1,1,1],-->
+            <!--[1,1,0,0,0,0,0],-->
+            <!--[1,1,0,0,0,0,0],-->
+            <!--[1,1,1,1,1,1,0],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,1,1,1,1,1,0]-->
+          <!--],//5-->
+          <!--[-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,1,1,0,0,0],-->
+            <!--[0,1,1,0,0,0,0],-->
+            <!--[1,1,0,0,0,0,0],-->
+            <!--[1,1,0,1,1,1,0],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,1,1,1,1,1,0]-->
+          <!--],//6-->
+          <!--[-->
+            <!--[1,1,1,1,1,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,0,1,1,0,0,0],-->
+            <!--[0,0,1,1,0,0,0],-->
+            <!--[0,0,1,1,0,0,0],-->
+            <!--[0,0,1,1,0,0,0]-->
+          <!--],//7-->
+          <!--[-->
+            <!--[0,1,1,1,1,1,0],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,1,1,1,1,1,0],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,1,1,1,1,1,0]-->
+          <!--],//8-->
+          <!--[-->
+            <!--[0,1,1,1,1,1,0],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[1,1,0,0,0,1,1],-->
+            <!--[0,1,1,1,0,1,1],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[0,0,0,0,0,1,1],-->
+            <!--[0,0,0,0,1,1,0],-->
+            <!--[0,0,0,1,1,0,0],-->
+            <!--[0,1,1,0,0,0,0]-->
+          <!--],//9-->
+          <!--[-->
+            <!--[0,0,0,0],-->
+            <!--[0,0,0,0],-->
+            <!--[0,1,1,0],-->
+            <!--[0,1,1,0],-->
+            <!--[0,0,0,0],-->
+            <!--[0,0,0,0],-->
+            <!--[0,1,1,0],-->
+            <!--[0,1,1,0],-->
+            <!--[0,0,0,0],-->
+            <!--[0,0,0,0]-->
+          <!--]//:-->
+        <!--];-->
+
+      <!--//数字位的锚点，以此为中心绘制数字点阵-->
+      <!--var anchors = [];-->
+      <!--//画布-->
+      <!--var canvas = undefined;-->
+      <!--//画布的设备上下文,内涵绘制图形的接口-->
+      <!--var ctx = undefined;-->
+
+
+      <!--//还要绘制的digit，包括冒号-->
+      <!--var charListToRender = [];-->
+      <!--//上一次绘制的digit，用于和新digit作比较-->
+      <!--var expiredCharList = [];-->
+      <!--//比较charListToRender expiredCharList的不同之处，并把不同之处的索引存放在crackedNumberIndex中-->
+      <!--//据此来绘制跳动的小球-->
+      <!--var crackedNumberIndex = [];-->
+      <!--//要绘制的彩色小球，保存在数组里-->
+      <!--var marbles = [];-->
+      <!--//定义一个marble类构造器-->
+      <!--function marble(posx, posy, vx, vy, color){-->
+        <!--this.positionX = posx;-->
+        <!--this.positionY = posy;-->
+        <!--this.velocityOnX = vx;-->
+        <!--this.velocityOnY = vy;-->
+        <!--this.color = color;-->
+        <!--this.update = function(){-->
+          <!--this.positionX += this.velocityOnX * this.$deltaTime + this.accelOnX * this.$halfSqureTime;//s = a*t*t/2 + vt-->
+          <!--this.positionY += this.velocityOnY * this.$deltaTime + this.accelOnY * this.$halfSqureTime;-->
+          <!--//this.velocityOnX += this.accelOnX * this.$deltaTime;-->
+          <!--this.velocityOnY += this.accelOnY * this.$deltaTime;-->
+          <!--if(this.positionY > this.bottomLimit){-->
+            <!--this.positionY = 2 * height - this.positionY;-->
+            <!--this.velocityOnY *= (Math.abs(this.velocityOnY) > 30 ? -this.lossFactor : 1);-->
+          <!--}-->
+          <!--else if(this.positionY < this.topLimit){-->
+            <!--this.positionY = -this.positionY;-->
+            <!--this.velocityOnY *= -this.lossFactor;-->
+          <!--}-->
+        <!--};-->
+      <!--};-->
+      <!--//marble的原型，可以通过某种方式暴露出去，让用户修改，当然要在开始循环绘制之前才会有效果-->
+      <!--marble.prototype.accelOnX = 0.0;//x方向的加速度，向右为正-->
+      <!--marble.prototype.accelOnY = 50.0;//y轴加速度，向下为正-->
+      <!--marble.prototype.maxInitVelX = 65;//x轴方向最大初始速度绝对值，-->
+      <!--marble.prototype.minInitVelX = 40;//x轴方向最小初始速度绝对值-->
+      <!--marble.prototype.maxInitVelY = 65;//y轴方向最大初始速度绝对值-->
+      <!--marble.prototype.minInitVelY = 40;//y轴方向最小初始速度绝对值-->
+      <!--marble.prototype.topLimit = 0;//顶部边界，超出边界的小球被弹回-->
+      <!--marble.prototype.bottomLimit = height;//底部边界-->
+      <!--marble.prototype.leftLimit = 0;//左边界-->
+      <!--marble.prototype.rightLimit = width;//右边界-->
+      <!--marble.prototype.$deltaTime = deltaTime / 1000;//刷新时间，以秒为单位-->
+      <!--marble.prototype.$halfSqureTime = 0.5 * (deltaTime * deltaTime / 1000 / 1000);//a*t*t/2,单独保存，节省计算量-->
+      <!--marble.prototype.horiz_dir_diff_switch_off = false;//是否关闭弹球在水平方向上随即向左右两边分流-->
+      <!--marble.prototype.vertical_dir_diff_switch_off = true;//是否关闭弹球在垂直方向上的初始速度上下分流-->
+      <!--marble.prototype.lossFactor = lossFactor;//发生碰撞时，速度的折损系数-->
+      <!--//网页打开时候回调函数-->
+      <!--window.onload = function(){-->
+        <!--canvas = document.getElementById(canvas_id);-->
+        <!--ctx = canvas.getContext("2d");-->
+        <!--canvas.width = width;-->
+        <!--canvas.height = height;-->
+
+        <!--var acc = margin_horiz;-->
+        <!--//计算数字位的锚点，以此为中心绘制数字-->
+        <!--for(let i = 0; i< 8; i++){-->
+          <!--if( i == 2 || i == 5){-->
+            <!--anchors[i] = (acc + 4.0 * ball_radius + gapCalcByRad * ball_radius);-->
+            <!--acc += 8.0 * ball_radius + gapCalcByRad * ball_radius;-->
+          <!--}-->
+          <!--else{-->
+            <!--anchors[i] = (acc + 7.0 * ball_radius + gapCalcByRad * ball_radius);-->
+            <!--acc += 14.0 * ball_radius + gapCalcByRad * ball_radius;-->
+          <!--}-->
+        <!--}-->
+        <!--ctx.fillStyle = digit_color;-->
+        <!--start();-->
+      <!--};-->
+      <!--//绘制弹球-->
+      <!--function renderMarbles(){-->
+        <!--let length = marbles.length;-->
+        <!--let radius = ball_radius;-->
+        <!--for(let i = 0; i < length; i++){-->
+          <!--drawBall(radius, marbles[i].positionX, marbles[i].positionY, marbles[i].color);-->
+        <!--}-->
+      <!--}-->
+      <!--//计算出变成marbles的数字为的索引，存放于crackedNumberIndex数组-->
+      <!--function updateClock(){-->
+        <!--expiredCharList = charListToRender;-->
+        <!--getCharListToRender();-->
+        <!--var length = expiredCharList.length;-->
+        <!--crackedNumberIndex.length = 0;//防止内存溢出-->
+        <!--for(let i = 0; i< length; i++){-->
+          <!--if(expiredCharList[i] != charListToRender[i]){-->
+            <!--crackedNumberIndex.push(i);-->
+          <!--}-->
+        <!--}-->
+      <!--}-->
+      <!--//遍历更新弹球的状态，包括速度，位置等-->
+      <!--function updateMarbles(){-->
+        <!--let length = marbles.length;-->
+        <!--for(let i = 0; i < length; i++){-->
+          <!--marbles[i].update();-->
+        <!--}-->
+      <!--}-->
+      <!--//每次数字位发生变化时会增加弹球数量-->
+      <!--function addMarbleArray(){-->
+        <!--let length = crackedNumberIndex.length, i = 0, j = 0;-->
+        <!--let colorsCount = colors.length;-->
+        <!--let maxInitVelX = marble.prototype.maxInitVelX;-->
+        <!--let maxInitVelY = marble.prototype.maxInitVelY;-->
+        <!--let minInitVelX = marble.prototype.minInitVelX;-->
+        <!--let minInitVelY = marble.prototype.minInitVelY;-->
+        <!--let horiz_dir_diff_switch_off = marble.prototype.horiz_dir_diff_switch_off;-->
+        <!--let vertical_dir_diff_switch_off = marble.prototype.vertical_dir_diff_switch_off;-->
+        <!--//marbles.length = 0;//重置数组，防止内存溢出-->
+        <!--for(let index = 0; index < length; index++){-->
+          <!--//如果不是两个冒号符号位，事实上冒号位发生变化不可能的，index是存放改变的数位的数组的索引，-->
+          <!--//number得到clock上变化的数字位的索引-->
+          <!--let number = crackedNumberIndex[index];-->
+          <!--if(number != 2 && number != 5){-->
+            <!--for(i = 0; i < 10; i++){-->
+              <!--for(j = 0; j < 7; j++){-->
+                <!--if(digit[expiredCharList[number]][i][j] == 1){-->
+                  <!--marbles.push(new marble(2 * (j-3.0)*ball_radius+anchors[number],-->
+                    <!--2 * (i-4.5)*ball_radius+median,-->
+                    <!--(Math.random() * (maxInitVelX - minInitVelX) + minInitVelX) * (horiz_dir_diff_switch_off ? -1 : (Math.random() * 2 > 1 ? 1 : -1)),-->
+                    <!--(Math.random() * (maxInitVelY - minInitVelY) + minInitVelY) * (vertical_dir_diff_switch_off ? -1 : (Math.random() * 2 > 1 ? 1 : -1)),-->
+                    <!--colors[Math.ceil(Math.random() * colorsCount)]-->
+                  <!--));-->
+                <!--}-->
+              <!--}-->
+            <!--}-->
+          <!--}else{-->
+            <!--alert("冒号位不应发生变化！");-->
+          <!--}-->
+        <!--}-->
+        <!--if(marbles.length > 1000){-->
+          <!--for( let i = 0; i < marbles.length - 1000; i++){-->
+            <!--marbles.shift()-->
+          <!--}-->
+        <!--}-->
+      <!--}-->
+      <!--//绘制时钟数字-->
+      <!--function renderClock(){-->
+        <!--ctx.clearRect(0, 0, canvas.width, canvas.height);-->
+        <!--for(let i = 0; i< charListToRender.length; i++){-->
+          <!--drawChar(charListToRender[i], anchors[i], median);-->
+        <!--}-->
+      <!--}-->
+      <!--//计算要绘制的符号，考虑到是否禁用倒计时功能-->
+      <!--function getCharListToRender(){-->
+        <!--var diffTime = (countdown_switch ? (parseInt((destTime.getTime() - new Date().getTime()))) : (new Date().getTime() - new Date(0, 0, 0)) )  / 1000;//以秒计数-->
+        <!--var diffHours = parseInt(diffTime / 3600);-->
+        <!--var diffMinutes = parseInt((diffTime % 3600) / 60);-->
+        <!--var diffSeconds = parseInt(diffTime % 60);-->
+
+        <!--if(diffTime < 0.005){-->
+          <!--charListToRender = [0,0,10,0,0,10,0,0];-->
+          <!--return;-->
+        <!--}-->
+        <!--//小时数超过两位数，就会出问题，做10进制求余运算，解决这种情况-->
+        <!--charListToRender = [-->
+          <!--countdown_switch ? parseInt(diffHours/10%10) : parseInt(diffHours%24/10),-->
+          <!--countdown_switch ? parseInt(diffHours%10) : parseInt(diffHours%24%10),-->
+          <!--10,-->
+          <!--parseInt(diffMinutes/10),-->
+          <!--parseInt(diffMinutes%10),-->
+          <!--10,-->
+          <!--parseInt(diffSeconds/10),-->
+          <!--parseInt(diffSeconds%10)];-->
+      <!--}-->
+      <!--//可以暴露的接口，用于设置目标时间，用于倒计时-->
+      <!--function setDestTime(year, month=1, day=1, hour=0, minute=0, second=0){-->
+        <!--destTime = new Date(year, month - 1, day, hour , minute, second);-->
+      <!--}-->
+      <!--//绘制数字位,通过调用drawBall函数实现-->
+      <!--function drawChar(index, x, y){-->
+        <!--let i = 0, j = 0;-->
+        <!--let radius = ball_radius * fillRem;-->
+        <!--if(index != 10){-->
+          <!--for(i = 0; i < 10; i++){-->
+            <!--for(j = 0; j < 7; j++){-->
+              <!--if(digit[index][i][j] == 1){-->
+                <!--drawBall(radius, 2 * (j-3.0)*ball_radius+x, 2 * (i-4.5)*ball_radius+y);-->
+              <!--}-->
+            <!--}-->
+          <!--}-->
+        <!--}else{-->
+          <!--for(i = 0; i < 10; i++){-->
+            <!--for(j = 0; j < 4; j++){-->
+              <!--if(digit[index][i][j] == 1){-->
+                <!--drawBall(radius, 2 * (j-1.5)*ball_radius+x, 2 * (i-4.5)*ball_radius+y);-->
+              <!--}-->
+            <!--}-->
+          <!--}-->
+        <!--}-->
+      <!--}-->
+      <!--//绘制圆球-->
+      <!--function drawBall(radius, x, y, color = digit_color){-->
+        <!--ctx.save();-->
+        <!--ctx.fillStyle = color;-->
+        <!--ctx.beginPath();-->
+        <!--ctx.arc(x, y, radius, 0, $2PI)-->
+        <!--ctx.closePath();-->
+        <!--ctx.fill();-->
+        <!--ctx.restore();-->
+      <!--}-->
+    <!--}("a");//参数为html文档上画布canvas的id,必须有canvas元素,把canvas的id填入此处,作为参数传入-->
+  <!--}-->
+  <!--clock();-->
+<!--</script>-->
+</body>
+</html>
